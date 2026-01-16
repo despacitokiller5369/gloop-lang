@@ -3,4 +3,9 @@ project(gloop_lang C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(gloop_lang src/main.c)
+file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.c")
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "include/*.h")
+
+add_executable(${PROJECT_NAME} ${sources} ${headers})
+
+target_include_directories(${PROJECT_NAME} PRIVATE include)
